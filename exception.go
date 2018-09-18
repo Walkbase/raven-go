@@ -1,7 +1,6 @@
 package raven
 
 import (
-	"reflect"
 	"regexp"
 )
 
@@ -11,8 +10,8 @@ func NewException(err error, stacktrace *Stacktrace) *Exception {
 	msg := err.Error()
 	ex := &Exception{
 		Stacktrace: stacktrace,
-		Value:      msg,
-		Type:       reflect.TypeOf(err).String(),
+		Value:      " ",
+		Type:       msg,
 	}
 	if m := errorMsgPattern.FindStringSubmatch(msg); m != nil {
 		ex.Module, ex.Value = m[1], m[2]
